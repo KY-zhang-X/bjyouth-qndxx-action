@@ -1,14 +1,15 @@
 # This workflow will install Python dependencies, run tests and lint with a single version of Python
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
 
-name: Python application
+name: Automatically check bjyouth qndxx
 
 on:
   schedule:
-    - cron: '0 0 */2 * *'
+    - cron: '0 1 */2 * *'
+  workflow_dispatch:
 
 jobs:
-  build:
+  checker:
 
     runs-on: ubuntu-latest
 
@@ -16,10 +17,10 @@ jobs:
     
     - uses: actions/checkout@v3
     
-    - name: Set up Python 3.7
+    - name: Set up Python 3.8
       uses: actions/setup-python@v3
       with:
-        python-version: "3.7"
+        python-version: "3.8"
     
     - name: Install dependencies
       run: |
