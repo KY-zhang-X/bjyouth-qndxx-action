@@ -51,8 +51,10 @@ class QnDxx(object):
         # 课程学习打卡
         print("尝试学习打卡")
         if self.check(course_id, org_id):
+            print("学习打卡成功")
             return course_title
         else:
+            print("学习打卡失败")
             return None
             
 
@@ -177,14 +179,12 @@ class QnDxx(object):
         '''
         打卡
         '''
-        params = {
+        json = {
             'id': course_id,
             'org_id': org_id,
         }
-        res = self.session.get(url=self.bjyouth_dxx_check_url, params=params)
+        res = self.session.post(url=self.bjyouth_dxx_check_url, json=json)
         if res.text == '':
             return True
         else:
-            return False
-
-    
+            raise Exception("打卡失败")
