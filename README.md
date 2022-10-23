@@ -14,18 +14,34 @@ bjyouth-qndxx-action
 
 点击右上角的 Fork 按钮创建自己的 Repository。
 
-然后，在自己的仓库中的 Settings 的 Secrets 中添加以下设置：
+然后，点进仓库中的 Settings 页面，选择 Secrets 下的 Actions 项，点击右上角 New repository secret 按钮添加信息：
 
-- `BJYOUTH_USERNAME`: 用来登录的用户名
-- `BJYOUTH_PASSWORD`: 用来登录的密码
+![](images/new-repository-secret.png)
+
+需要设置以下信息：
+
+- `BJYOUTH_USERNAME`: 登录青春北京的用户名
+- `BJYOUTH_PASSWORD`: 登录青春北京的密码
 
 > 可以在 https://m.bjyouth.net/site/login 测试登录信息。
+
+设置完成后，可以在页面中看到已设置的 Repository secrets：
+
+![](images/repository-secrets.png)
+
+最后，点进仓库的 Actions 页面，启用 GitHub Actions 功能。然后，在 Actions 页面下，点选描述为 Automatically check bjyouth qndxx 的工作流，点击 Enable workflow 按钮启用。
+
+![](images/enable-actions.png)
+
+![](images/enable-qndxx-action.png)
+
+如果你想手动运行，可以点进仓库的 Actions 页面，在 Automatically check bjyouth qndxx 工作流中，点击右上角的 Run workflow 运行。
+
+![](images/run-workflow.png)
 
 ## 检查结果
 
 无需任何设置。如果运行失败，GitHub 会向你的邮箱发送一封邮件。
-
-如果你更改了设置，想手动重新运行，可以点进上方的 Actions 栏，点击 Re-run Jobs 来重新运行。
 
 ### ServerChan
 
