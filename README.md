@@ -7,7 +7,7 @@ bjyouth-qndxx-action
 </p>
 
 <p align="center">
-这个 Action 会每两天在 9:00 AM 尝试学习打卡。
+这个 Action 会在每周的周一/三/五/日在 12:00 AM 尝试学习打卡。
 </p>
 
 ## 使用方法

@@ -5,7 +5,7 @@ name: Automatically check bjyouth qndxx
 
 on:
   schedule:
-    - cron: '0 1 ? * 1/2,0'
+    - cron: '0 4 ? * 1/2,0'
   workflow_dispatch:
   push:
   pull_request:
