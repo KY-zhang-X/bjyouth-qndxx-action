@@ -24,7 +24,8 @@ def main():
             sct.push("学习成功 [qndxx]", f"课程标题：{title}")
         return 0
     except Exception as exc:
-        sct.push("学习失败 [qndxx]", repr(exc))
+        if sct:
+            sct.push("学习失败 [qndxx]", repr(exc))
         exit(-1)
 
 if __name__ == '__main__':
