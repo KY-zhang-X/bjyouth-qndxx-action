@@ -33,9 +33,10 @@ class QnDxx(object):
             if self.login(username, password):
                 break
             else:           # 验证码错误
+                print("验证码错误")
                 retry += 1
         else:
-            print("验证码错误")
+            print("尝试4次登录均出错, 脚本退出")
             return None
         # 获取最新课程ID和课程标题
         print("尝试获取最新课程信息")
@@ -77,7 +78,9 @@ class QnDxx(object):
             'Login[verifyCode]': captcha_code
         })
         res_json = res.json()
-        try:
+        if res_json == 8:
+            return False
+        else:
             rs = res_json['rs']
             if rs == 'fail':
                 raise Exception('用户名或密码错误')
@@ -85,8 +88,6 @@ class QnDxx(object):
                 return True
             else:
                 raise Exception('出现未知的登录错误')
-        except KeyError:
-            return False
 
     def get_captcha(self) -> bytes:
         '''
