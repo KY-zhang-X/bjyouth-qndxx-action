@@ -1,5 +1,6 @@
 
 import os
+import traceback
 from qndxx import QnDxx
 from push import ServerChan
 
@@ -26,6 +27,7 @@ def main():
     except Exception as exc:
         if sct:
             sct.push("学习失败 [qndxx]", repr(exc))
+        traceback.print_exc()
         exit(-1)
 
 if __name__ == '__main__':
