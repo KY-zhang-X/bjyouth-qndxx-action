@@ -71,12 +71,12 @@ class QnDxx(object):
         captcha = self.get_captcha()
         captcha_code = self.parse_captcha_code(self.denoise(captcha))
         # captcha_code = 'e4u2'
-        res = self.session.post(url=self.bjyouth_login_url, verify=False, data={
+        res = self.session.post(url=self.bjyouth_login_url, data={
             '_csrf_mobile': self.session.cookies.get_dict()['_csrf_mobile'],
             'Login[username]': self.js_encrypt(username, pubkey),
             'Login[password]': self.js_encrypt(password, pubkey),
             'Login[verifyCode]': captcha_code
-        })
+        }, timeout=5)
         res_json = res.json()
         if res_json == 8:
             return False
@@ -93,10 +93,10 @@ class QnDxx(object):
         '''
         获取登录页面的验证码
         '''
-        res = self.session.get(url=self.bjyouth_login_url, verify=False)
+        res = self.session.get(url=self.bjyouth_login_url, timeout=5)
         src = re.findall(r'<img id="verifyCode-image" src="(.+)" alt=".+">', res.text)[0]
         url = "https://m.bjyouth.net" + src
-        captcha = self.session.get(url, verify=False).content
+        captcha = self.session.get(url, timeout=5).content
         return captcha
 
     def denoise(self, captcha) -> bytes:
@@ -145,7 +145,7 @@ class QnDxx(object):
         '''
         获取最新课程id和标题
         '''
-        res = self.session.get(url=self.bjyouth_dxx_index_url, verify=False)
+        res = self.session.get(url=self.bjyouth_dxx_index_url, timeout=5)
         res_json = res.json()
         course_id = res_json['newCourse']['id']
         course_title = res_json['newCourse']['title']
@@ -155,11 +155,11 @@ class QnDxx(object):
         '''
         根据课程标题检查是否学习过该课程
         '''
-        res = self.session.get(url=self.bjyouth_dxx_record_url, verify=False, params={
+        res = self.session.get(url=self.bjyouth_dxx_record_url, params={
             'page': 1,
             'limit': 15,
             'year': time.localtime(time.time()).tm_year
-        })
+        }, timeout=5)
         res_json = res.json()
         records = res_json['data']
         for record in records:
@@ -171,7 +171,7 @@ class QnDxx(object):
         '''
         获取当前组织ID
         '''
-        res = self.session.get(url=self.bjyouth_dxx_league_url, verify=False)
+        res = self.session.get(url=self.bjyouth_dxx_league_url, timeout=5)
         org_id = int(res.text)
         return org_id
         
@@ -184,7 +184,7 @@ class QnDxx(object):
             'id': course_id,
             'org_id': org_id,
         }
-        res = self.session.post(url=self.bjyouth_dxx_check_url, verify=False, json=json)
+        res = self.session.post(url=self.bjyouth_dxx_check_url, json=json, timeout=5)
         if res.text == '':
             return True
         else:
