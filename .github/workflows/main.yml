@@ -23,6 +23,12 @@ jobs:
     
     # - uses: actions/checkout@v3
     
+    - name: Lookup DNS
+      run: |
+        nslookup m.bjyouth.net
+        nslookup www.baidu.com
+        nslookup www.google.com
+
     - name: Show DNS profile
       run: |
         systemd-resolve --status | grep 'DNS Servers' -A2
@@ -38,7 +44,7 @@ jobs:
         systemd-resolve --status | grep 'DNS Servers' -A2
         if [ -f /etc/systemd/resolved.conf ]; then cat /etc/systemd/resolved.conf; fi
 
-    - name: Lookup DNS
+    - name: Lookup DNS again
       run: |
         nslookup m.bjyouth.net
         nslookup www.baidu.com
