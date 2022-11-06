@@ -21,18 +21,28 @@ jobs:
 
     steps:
     
-    - uses: actions/checkout@v3
+    # - uses: actions/checkout@v3
     
+    - name: Show DNS profile
+      run: |
+        systemd-resolve --status | grep 'DNS Servers' -A2
+        if [ -f /etc/systemd/resolved.conf ]; then cat /etc/systemd/resolved.conf; fi
+
+    - name: Try to modify DNS
+      run: |
+        echo 'DNS=114.114.114.114' >> /etc/systemd/resolved.conf
+        systemctl restart systemd-resolved
+
+    - name: Show DNS profile again
+      run: |
+        systemd-resolve --status | grep 'DNS Servers' -A2
+        if [ -f /etc/systemd/resolved.conf ]; then cat /etc/systemd/resolved.conf; fi
+
     - name: Lookup DNS
       run: |
         nslookup m.bjyouth.net
         nslookup www.baidu.com
         nslookup www.google.com
-
-    - name: Show DNS profile
-      run: |
-        if [ -f /etc/resolv.conf ]; then cat /etc/resolv.conf; fi
-        if [ -f /etc/netplan/00-installer-config.yaml ]; then cat /etc/netplan/00-installer-config.yaml; fi
 
     # - name: Set up Python 3.8
     #   uses: actions/setup-python@v3
