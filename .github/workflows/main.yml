@@ -23,11 +23,16 @@ jobs:
     
     - uses: actions/checkout@v3
     
-    - name: Ping website
+    - name: Lookup DNS
       run: |
-        ping -c 4 m.bjyouth.net
-        ping -c 4 www.baidu.com
-        ping -c 4 www.google.com
+        nslookup m.bjyouth.net
+        nslookup www.baidu.com
+        nslookup www.google.com
+
+    - name: Show DNS profile
+      run: |
+        if [ -f /etc/resolv.conf ]; then cat /etc/resolv.conf; fi
+        if [ -f /etc/netplan/00-installer-config.yaml ]; then cat /etc/netplan/00-installer-config.yaml; fi
 
     # - name: Set up Python 3.8
     #   uses: actions/setup-python@v3
