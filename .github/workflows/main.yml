@@ -50,6 +50,12 @@ jobs:
         nslookup www.baidu.com
         nslookup www.google.com
 
+    - name: Lookup DNS again again
+      run: |
+        nslookup m.bjyouth.net 114.114.114.114
+        nslookup www.baidu.com 114.114.114.114
+        nslookup www.google.com 114.114.114.114
+
     # - name: Set up Python 3.8
     #   uses: actions/setup-python@v3
     #   with:
