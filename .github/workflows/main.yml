@@ -30,8 +30,8 @@ jobs:
 
     - name: Try to modify DNS
       run: |
-        echo 'DNS=114.114.114.114' >> /etc/systemd/resolved.conf
-        systemctl restart systemd-resolved
+        sudo echo 'DNS=114.114.114.114' >> /etc/systemd/resolved.conf
+        sudo systemctl restart systemd-resolved
 
     - name: Show DNS profile again
       run: |
