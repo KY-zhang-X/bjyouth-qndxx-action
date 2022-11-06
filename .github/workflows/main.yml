@@ -36,7 +36,7 @@ jobs:
 
     - name: Try to modify DNS
       run: |
-        echo 'DNS=114.114.114.114' | sudo tee -a /etc/systemd/resolved.conf
+        echo 'DNS=8.8.8.8' | sudo tee -a /etc/systemd/resolved.conf
         sudo systemctl restart systemd-resolved
 
     - name: Show DNS profile again
