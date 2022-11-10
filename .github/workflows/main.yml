@@ -21,22 +21,27 @@ jobs:
 
     steps:
     
-    - uses: actions/checkout@v3
+      - name: DNS Test
+        run: |
+          nslookup m.bjyouth.net 223.5.5.5
+    # - uses: actions/checkout@v3
     
-    - name: Set up Python 3.8
-      uses: actions/setup-python@v3
-      with:
-        python-version: "3.8"
+    # - name: Set up Python 3.8
+    #   uses: actions/setup-python@v3
+    #   with:
+    #     python-version: "3.8"
     
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    # - name: Install dependencies
+    #   run: |
+    #     python -m pip install --upgrade pip
+    #     if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     
-    - name: Run main.py
-      env:
-        BJYOUTH_USERNAME: ${{ secrets.BJYOUTH_USERNAME }}
-        BJYOUTH_PASSWORD: ${{ secrets.BJYOUTH_PASSWORD }}
-        SERVERCHAN_KEY: ${{ secrets.SERVERCHAN_KEY }}
-      run: |
-        python main.py
+    # - name: Run main.py
+    #   env:
+    #     BJYOUTH_USERNAME: ${{ secrets.BJYOUTH_USERNAME }}
+    #     BJYOUTH_PASSWORD: ${{ secrets.BJYOUTH_PASSWORD }}
+    #     SERVERCHAN_KEY: ${{ secrets.SERVERCHAN_KEY }}
+    #     http_proxy: ${{ secrets.HTTP_PROXY }}
+    #     https_proxy: ${{ secrets.HTTPS_PROXY }}
+    #   run: |
+    #     python main.py
