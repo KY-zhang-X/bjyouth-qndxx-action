@@ -21,6 +21,9 @@ jobs:
 
     steps:
     
+    # - name: DNS Test
+    #   run: |
+    #     nslookup m.bjyouth.net 223.5.5.5
     - uses: actions/checkout@v3
     
     - name: Set up Python 3.8
@@ -38,5 +41,7 @@ jobs:
         BJYOUTH_USERNAME: ${{ secrets.BJYOUTH_USERNAME }}
         BJYOUTH_PASSWORD: ${{ secrets.BJYOUTH_PASSWORD }}
         SERVERCHAN_KEY: ${{ secrets.SERVERCHAN_KEY }}
+        http_proxy: ${{ secrets.HTTP_PROXY }}
+        https_proxy: ${{ secrets.HTTPS_PROXY }}
       run: |
         python main.py
