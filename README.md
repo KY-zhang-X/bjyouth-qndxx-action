@@ -20,8 +20,8 @@ bjyouth-qndxx-action
 
 需要设置以下信息：
 
-- `BJYOUTH_USERNAME`: 登录青春北京的用户名
-- `BJYOUTH_PASSWORD`: 登录青春北京的密码
+- `BJYOUTH_USERNAME`：登录青春北京的用户名
+- `BJYOUTH_PASSWORD`：登录青春北京的密码
 
 > 可以在 https://m.bjyouth.net/site/login 测试登录信息。
 
@@ -39,6 +39,10 @@ bjyouth-qndxx-action
 
 ![](images/run-workflow.png)
 
+**注意**：从 2022/11/04 开始，由于域名解析问题，需要配置一个回国代理服务器，才能正常使用，详情参考 Issue#1。使用代理服务器需要配置以下 Secret：
+
+- `HTTPS_PROXY`：代理服务器地址，格式为 `http://<host>:<port>`
+
 ## 检查结果
 
 无需任何设置。如果运行失败，GitHub 会向你的邮箱发送一封邮件。
@@ -47,7 +51,7 @@ bjyouth-qndxx-action
 
 [Server 酱](https://sct.ftqq.com/) 可以把填报结果推送到微信服务号或者企业微信内。你可以设置如下 Secret 发送结果：
 
-- `SERVERCHAN_KEY`: 你的 SendKey
+- `SERVERCHAN_KEY`：你的 SendKey
 
 ## 高级设置
 
