@@ -160,7 +160,10 @@ class QnDxx(object):
             'limit': 15,
             'year': time.localtime(time.time()).tm_year
         }, timeout=5)
-        res_json = res.json()
+        try:
+            res_json = res.json()
+        except requests.JSONDecodeError:
+            return False
         records = res_json['data']
         for record in records:
             if course_title in record['text']:
